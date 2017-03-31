@@ -1,0 +1,23 @@
+<div class="main__inner-wrapper">
+	<div class="main__head-wrapper">
+		<h3 class="main-banner">Каталог приложений</h3>
+	</div>
+	<table class="table-catalog">
+		<thead>
+			<tr class="table-catalog__line table-catalog__line_background_dark-gray">
+				<th class="table-catalog__head"></th>
+				<th class="table-catalog__head">Наименование</th>
+				<th class="table-catalog__head">Описание</th>
+				<th class="table-catalog__head">Стоимость<br>(тыс у.е.)</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr class="table-catalog__line table-catalog__line_background_white" 
+				prod-item
+				ng-repeat="product in store.products" >
+				
+			</tr>
+		</tbody>
+		
+	</table>
+</div>

@@ -5,73 +5,51 @@
 		<title>Аренда сейфов</title>
 		<link rel="stylesheet" href="css/normalize.css"/>
 		<link rel="stylesheet" href="css/style.css" />
-
+		<link rel="stylesheet" href="css/bootstrap.min.css" />
 		<script type="text/javascript" src="js/angular.min.js"></script>
 		<script type="text/javascript" src="js/app.js"></script>
+		<script type="text/javascript" src="js/bootstrap.min.js"></script>
 	</head>
 	<body class="page-body">
 		
 			<header class="header">
 				<div class=" header-wrapper">
 					<nav class="navigation navigation__header">
-						<a href="Main-page.html" class="navigation__link">Главная</a>
-						<a href="CFT-bank-page.html" class="navigation__link">Каталог приложений</a>
+						<a href="index.html" class="navigation__link">Главная</a>
+						<a href="Rent-safes-page.html" class="navigation__link">Каталог приложений</a>
 						<a href="#" class="navigation__link">О компании</a>
 					</nav>
-				<a href="Main-page.html" class="header__logo"></a>					
+				<a href="index.html" class="header__logo"></a>					
 				</div>
 			</header>
-			<div class="middle">
+			<div class="middle"
+				 ng-controller="StoreController as store"
+	   			 ng-switch on="store.pageData.pageName">
+
 				<aside class="sidebar sidebar__list_background-white">
 					<h2 class="sidebar__banner">Каталог приложений</h2>
 					<ul class="sidebar__list">
-						<li><a href="#" class="sidebar__link">Стандартный пакет</a></li>
-						<li><a href="CFT-bank-page.html" class="sidebar__link">Новый ЦФТ-Банк</a></li>
-						<li><a href="#" class="sidebar__link">Cash Management</a></li>
-						<li><a href="Rent-safes-page.html" class="sidebar__link">Аренда сейфов</a></li>
-						<li><a href="#" class="sidebar__link">Банковские гарантии</a></li>
-						<li><a href="#" class="sidebar__link">Казначейство</a></li>
-						<li><a href="#" class="sidebar__link">Страхование</a></li>
-						<li><a href="#" class="sidebar__link">Факторинговое обслуживание</a></li>
-						<li><a href="#" class="sidebar__link">Переводы средств</a></li>
-						<li><a href="#" class="sidebar__link">Расчетный центр</a></li>
-						<li><a href="#" class="sidebar__link">Пластиковые карты</a></li>
-						<li><a href="#" class="sidebar__link">Финансовый мониторинг</a></li>
-						<li><a href="#" class="sidebar__link">Депозиты и вклады</a></li>
-						<li><a href="#" class="sidebar__link">Инвестиции</a></li>
+						<li><a href ="#" class="sidebar__link">Стандартный пакет</a></li>
+						<li><a href ="CFT-bank-page.html" class="sidebar__link">Новый ЦФТ-Банк</a></li>
+						<li><a href ="#" class="sidebar__link">Cash Management</a></li>
+						<li><a href class ="sidebar__link"
+							   ng-click ="store.activePage('products-catalog')">Аренда сейфов</a></li>
+						<li><a href ="#" class="sidebar__link">Банковские гарантии</a></li>
+						<li><a href ="#" class="sidebar__link">Казначейство</a></li>
+						<li><a href ="#" class="sidebar__link">Страхование</a></li>
+						<li><a href ="#" class="sidebar__link">Факторинговое обслуживание</a></li>
+						<li><a href ="#" class="sidebar__link">Переводы средств</a></li>
+						<li><a href ="#" class="sidebar__link">Расчетный центр</a></li>
+						<li><a href ="#" class="sidebar__link">Пластиковые карты</a></li>
+						<li><a href ="#" class="sidebar__link">Финансовый мониторинг</a></li>
+						<li><a href ="#" class="sidebar__link">Депозиты и вклады</a></li>
+						<li><a href ="#" class="sidebar__link">Инвестиции</a></li>
 					</ul>
 	   			</aside>
-	   			<section class="main main_background_white"  ng-controller="StoreController as store">
-	   				<div class="main__head-wrapper">
-						<h3 class="main-banner">Каталог-аренда сейфов</h3>
-					</div>
-					<table class="table-catalog">
-						<thead>
-							<tr class="table-catalog__line table-catalog__line_background_dark-gray">
-								<th class="table-catalog__head"></th>
-								<th class="table-catalog__head">Наименование</th>
-								<th class="table-catalog__head">Описание</th>
-								<th class="table-catalog__head">Стоимость<br>(тыс у.е.)</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr class="table-catalog__line table-catalog__line_background_white" 
-								ng-repeat="product in store.products">
-
-								<td class="table-catalog__icon"><a href="#" class="table-catalog__icon-picture"></a></td>
-								<td class="table-catalog__name">
-									<a href="#" class="table-catalog__name-link">{{product.nameLink}}</a><br>
-									<time class="table-catalog__time">
-										{{product.time}}
-									</time>
-								</td>
-								<td class="table-catalog__description">{{product.description}}</td>
-								<td class="table-catalog__cost">{{product.price}}</td>	
-							</tr>
-							
-						</tbody>
-					</table>
-
+	   			<section class="main main_background_white">
+					<prod-table ng-switch-when = "products-catalog" ></prod-table>
+					<prod-page ng-switch-when = "product-page"></prod-page>
+					<prod-table ng-switch-default></prod-table>
 	   			</section>
 			</div>
 	</body>
