@@ -36,14 +36,14 @@
 	});
 	app.directive("prodTable", function(){
 		return {
-			restrict: 'E',//или E
+			restrict: 'E',
 			replace: true,
 			templateUrl: "partial/products-catalog.html"
 		}
 	});
 	app.directive("prodPage", function(){
 		return {
-			restrict: 'E',//или E
+			restrict: 'E',
 			replace: true,
 			templateUrl: "partial/product-page.html"
 			
