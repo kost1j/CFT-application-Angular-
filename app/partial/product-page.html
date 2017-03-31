@@ -51,7 +51,8 @@
 		<span ng-show="store.showNavItem(1)"><b>Время изменения: </b>{{store.pageData.time}}</span>
 		<span ng-show="store.showNavItem(2)"><b>Описание: </b>{{store.pageData.description}}</span>
 		<span ng-show="store.showNavItem(3)"><b>Цена: </b>{{store.pageData.price|currency}}</span>
-		
+		<br><br>
+		<a href ng-click = "store.activePage('products-catalog')">Назад</a>
 		<!--
 			<h3 class="main-banner main-banner_style_underline">Основные функции</h3>
 		
