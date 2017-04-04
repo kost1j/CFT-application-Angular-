@@ -1,5 +1,23 @@
 (function(){
-	var app = angular.module("store",["storeDirective"]);
+	var app = angular.module("store",["storeDirective", "ngRoute"])
+	.config(function($routeProvider){
+        $routeProvider.when('/catalog',
+        {
+            templateUrl:'templates/products-catalog/index.html',
+            controller:'StoreController'
+        });
+        $routeProvider.when('/product/:id',
+        {
+            templateUrl:'templates/product-page/index.html',
+            controller: 'LinkProductController'
+        });
+        $routeProvider.when('/',
+        {
+            templateUrl:'templates/products-catalog/index.html',
+            controller:'StoreController'
+        });
+    });
+	
 	app.factory('httpq', function($http, $q){
 		return{
 			get: function(){
@@ -12,43 +30,46 @@
 		}
 	});
 
-
 	/*Объявление контроллера*/
-	app.controller("StoreController", function(httpq){
-		var store = this;
-		store.products = [];
-		
+	app.controller("LinkProductController", function($http, $routeParams, $scope, httpq){
+
 		httpq.get('api/products.json')
 		.then(function(data){
-			store.products = data.data;
+			$scope.pageData = data.data[$routeParams.id];
 		})
 		.catch(function(){
 			alert("Error httpRequset")
 		})
 
-		var pageData = {};
-		this.pageData = pageData;
-		
-		this.navListId = 1;/*<---начальный пункт меню продукта*/
+	});   
 
-		/*функция выбора продукта для отображения на отдельной странице*/
-		this.activePage = function(page, product){
-			product = product||{};
-			product.pageName = page;
-			this.pageData = product;
-		};
+	app.controller("StoreController", function($http, httpq, $scope){
+		var store = this;
+		$scope.products = [];
+		$scope.pageData = {};
+		store.navListId = 1;/*<---начальный пункт меню продукта*/
+
+		httpq.get('api/products.json')
+		.then(function(data){
+			$scope.products = data.data;
+		})
+		.catch(function(){
+			alert("Error httpRequset")
+		})
+
 		/*функция выбора пункта меню*/
 		this.activeNavItem = function(id){
-			this.navListId = id;
+			store.navListId = id;
 		};
 		/*функция изменения класса на "active" у выбранного пункта меню*/
 		this.activeNavClass = function(check){
-			return this.navListId===check?"active":"";
+			return store.navListId===check?"active":"";
 		};
 		/*функция отображения содержимого выбранного пункта меню*/
 		this.showNavItem = function(check){
-			return this.navListId === check;
+			return store.navListId === check;
 		};
 	});
+
 	
 })();      

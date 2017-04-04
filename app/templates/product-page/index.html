@@ -1,6 +1,6 @@
 <div class="main__inner-wrapper">
 	<div class="main__head-wrapper">
-		<h3 class="main-banner main-banner_style_underline">{{store.pageData.nameLink}}</h3>
+		<h3 class="main-banner main-banner_style_underline">{{pageData.nameLink}}</h3>
 	</div>
 	<div class="main__content-wrapper">
 		<div class="product-discription">
@@ -43,16 +43,16 @@
 		</div>
 		<div class="product-function">
 		<ul class="nav nav-tabs">
- 			<li ng-class="store.activeNavClass(1)"><a href="#" ng-click="store.activeNavItem(1)">Время изменения</a></li>
-       		<li ng-class="store.activeNavClass(2)"><a href="#" ng-click="store.activeNavItem(2)">Описание</a></li>
- 			<li ng-class="store.activeNavClass(3)"><a href="#" ng-click="store.activeNavItem(3)">Цена</a></li>
+ 			<li ng-class="store.activeNavClass(1)"><a href ng-click="store.activeNavItem(1)">Время изменения</a></li>
+       		<li ng-class="store.activeNavClass(2)"><a href ng-click="store.activeNavItem(2)">Описание</a></li>
+ 			<li ng-class="store.activeNavClass(3)"><a href ng-click="store.activeNavItem(3)">Цена</a></li>
 		</ul></br></br>
 		
-		<span ng-show="store.showNavItem(1)"><b>Время изменения: </b>{{store.pageData.time}}</span>
-		<span ng-show="store.showNavItem(2)"><b>Описание: </b>{{store.pageData.description}}</span>
-		<span ng-show="store.showNavItem(3)"><b>Цена: </b>{{store.pageData.price|currency}}</span>
+		<span ng-show="store.showNavItem(1)"><b>Время изменения: </b>{{pageData.time}}</span>
+		<span ng-show="store.showNavItem(2)"><b>Описание: </b>{{pageData.description}}</span>
+		<span ng-show="store.showNavItem(3)"><b>Цена: </b>{{pageData.price|currency}}</span>
 		<br><br>
-		<a href ng-click = "store.activePage('products-catalog')">Назад</a>
+		<a href="Rent-safes-page.html#!/catalog">Назад</a>
 		<!--
 			<h3 class="main-banner main-banner_style_underline">Основные функции</h3>
 		
